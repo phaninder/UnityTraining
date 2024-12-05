@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Basics : MonoBehaviour
 {
+    public string myName = "Basics";
     // Called once when object gets active
     private void Awake()
     {
