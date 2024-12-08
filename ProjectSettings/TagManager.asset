@@ -6,7 +6,9 @@ TagManager:
   tags:
   - VerticalDirection
   - HorizontalDirection
-  - PlayerOne
+  - Bat
+  - DownTrigger
+  - TopTrigger
   layers:
   - Default
   - TransparentFX
