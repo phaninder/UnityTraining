@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,5 +40,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         gameOverTextObject.SetActive(false);
         restartButtonObject.SetActive(false);
+        //For loading a scene
+        SceneManager.LoadScene("PingPong");
     }
 }
