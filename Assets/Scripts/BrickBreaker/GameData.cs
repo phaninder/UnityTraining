@@ -6,10 +6,14 @@ public class GameData : MonoBehaviour
 {
     private static int screenWidth;
     private static int screenHeight;
+    private static Vector2 screenStartPosition;
+    private static Vector2 screenEndPosition;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        screenEndPosition = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        screenStartPosition = Camera.main.ScreenToWorldPoint(Vector2.zero);
+
         screenWidth = Screen.width;
         screenHeight = Screen.height;
     }
@@ -20,4 +24,9 @@ public class GameData : MonoBehaviour
     }
 
     public static int ScreenHeight() => screenHeight;
+
+    public static Vector2 ScreenStartPosition => screenStartPosition;
+
+    public static Vector2 ScreenEndPosition => screenEndPosition;
+
 }

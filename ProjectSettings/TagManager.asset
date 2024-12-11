@@ -9,6 +9,7 @@ TagManager:
   - Bat
   - DownTrigger
   - TopTrigger
+  - Brick
   layers:
   - Default
   - TransparentFX
