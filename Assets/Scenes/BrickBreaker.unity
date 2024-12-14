@@ -446,6 +446,7 @@ MonoBehaviour:
   brickPrefab: {fileID: 4486135400466039740, guid: 85ace294a11403f4d88ede415a232cf7, type: 3}
   startPosition: {x: -12, y: 6, z: 0}
   numOfBrick: 20
+  colCount: 5
 --- !u!1 &1399780007
 GameObject:
   m_ObjectHideFlags: 0

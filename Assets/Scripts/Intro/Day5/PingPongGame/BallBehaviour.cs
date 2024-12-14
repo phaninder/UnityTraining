@@ -24,9 +24,9 @@ public class BallBehaviour : MonoBehaviour
 
     enum BallState
     {
-        Start,
-        Move,
-        Reset
+        Start, //0
+        Move, // 1
+        Reset //2
     };
 
     [SerializeField]

@@ -12,6 +12,7 @@ public class BrickCreator : MonoBehaviour
     private int numOfBrick = 10;
     [SerializeField]
     private int colCount = 5;
+
     // Start is called before the first frame update
     void Start()
     {
