@@ -10,9 +10,21 @@ public class UIInteraction : MonoBehaviour
     private TextMeshProUGUI displayText;
     [SerializeField]
     private Image backgroundImage;
+    [SerializeField]
+    private Toggle toggle;
+    [SerializeField]
+    private Button buttonRef;
 
     [SerializeField]
     private Sprite newBackgroundSprite;
+    [SerializeField]
+    private GameObject panelRef;
+
+    public void OnToggleChanged(bool value)
+    {
+        panelRef.SetActive(value);
+        buttonRef.interactable = value;
+    }
 
     public void OnButtonPressed()
     {
@@ -20,7 +32,36 @@ public class UIInteraction : MonoBehaviour
         backgroundImage.sprite = newBackgroundSprite;
     }
 
-    private void Update()
+    public void OnSliderValueChanged(float newValue)
     {
+        Debug.Log("Value is:" + newValue);
+    }    
+
+    public void OnScrollValueChanged(Vector2 Value)
+    {
+        Debug.Log("Value of scrool:" + Value);
     }
+
+    public void OnDropDownSelected(int value)
+    {
+        Debug.Log("Color Selected =" + (PlayerColor)value);
+    }
+
+    public void OnInputFieldChanged(string value)
+    {
+        Debug.Log("Input Selected =" + value);
+    }
+
+    public void OnInputEnd(string value)
+    {
+        Debug.Log("Input End =" + value);
+    }
+}
+
+public enum PlayerColor
+{
+    Blue,
+    Red,
+    Green,
+    Yellow
 }
