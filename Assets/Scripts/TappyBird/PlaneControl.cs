@@ -25,9 +25,43 @@ public class PlaneControl : MonoBehaviour
         }
     }
 
+    private void OnGameOver()
+    {
+        GameEvents.GameOver?.Invoke();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Time.timeScale = 0;
-        Debug.Log("Collided with rock");
+        if (collision.gameObject.CompareTag("Rock"))
+        {
+            OnGameOver();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision != null)
+        {
+            if (collision.gameObject.CompareTag("Trigger"))
+            {
+                OnGameOver();
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision != null)
+        {
+            if(collision.gameObject.CompareTag("ScoreTrigger"))
+            {
+                Debug.Log("Increment Score");
+                //if(GameEvents.IncrementScore != null)
+                //{
+                //    GameEvents.IncrementScore();
+                //}
+                GameEvents.IncrementScore?.Invoke();
+            }
+        }
     }
 }

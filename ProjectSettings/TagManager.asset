@@ -10,6 +10,9 @@ TagManager:
   - DownTrigger
   - TopTrigger
   - Brick
+  - Trigger
+  - Rock
+  - ScoreTrigger
   layers:
   - Default
   - TransparentFX
