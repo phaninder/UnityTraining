@@ -25,4 +25,10 @@ public class GameOver : MonoBehaviour
         gameOverPanel.SetActive(true);
         gameOverText.text = "Game Over";
     }
+
+    public void OnRestartButtonPressed()
+    {
+        GameEvents.RestartGame?.Invoke();
+        gameOverPanel.SetActive(false);
+    }
 }

@@ -9,10 +9,21 @@ public class PlaneControl : MonoBehaviour
     [SerializeField]
     private Vector2 velocity;
 
+    private Vector3 startPos;
+
+    private void OnEnable()
+    {
+        GameEvents.RestartGame += OnRestart;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.RestartGame -= OnRestart;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        
+        startPos = transform.position;
     }
 
     // Update is called once per frame
@@ -28,6 +39,12 @@ public class PlaneControl : MonoBehaviour
     private void OnGameOver()
     {
         GameEvents.GameOver?.Invoke();
+    }
+
+    private void OnRestart()
+    {
+        rigidbodyRef.velocity = Vector3.zero;
+        transform.position = startPos;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

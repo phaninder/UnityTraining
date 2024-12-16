@@ -27,9 +27,7 @@ public class ResetObject : MonoBehaviour
         if (transform.position.x < GameData.ScreenStartPosition.x)
         {
             var newPos = objectMovementRef.GetNextUpdatePosition();
-            Debug.Log($"Next pos X{newPos.x}");
             newPos.x = nextObject.position.x + xPosDelta; // 30 -> 9
-            Debug.Log($"Pos to set in x:{newPos.x}");
             transform.position = newPos;
         }
     }

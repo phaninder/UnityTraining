@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace TappyBird
 {
@@ -18,11 +20,13 @@ namespace TappyBird
         private void OnEnable()
         {
             GameEvents.GameOver += OnGameOver;
+            GameEvents.RestartGame += OnRestart;
         }
 
         private void OnDisable()
         {
             GameEvents.GameOver -= OnGameOver;
+            GameEvents.RestartGame -= OnRestart;
         }
 
         // Start is called before the first frame update
@@ -33,6 +37,7 @@ namespace TappyBird
 
         private void IncreaseSpeed()
         {
+            Debug.Log("In increase speed");
             if(currentSpeed < maxSpeed)
             {
                 currentSpeed += speedIncrement;
@@ -40,8 +45,17 @@ namespace TappyBird
             }
         }
 
+        private void OnRestart()
+        {
+            Time.timeScale = 1; 
+            currentSpeed = 1.0f;
+            InvokeRepeating("IncreaseSpeed", 3f, 5f);
+            //SceneManager.LoadScene(1);
+        }
+
         private void OnGameOver()
         {
+            CancelInvoke("IncreaseSpeed");
             Time.timeScale = 0;
         }
     }
