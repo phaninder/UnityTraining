@@ -31,4 +31,9 @@ public class GameOver : MonoBehaviour
         GameEvents.RestartGame?.Invoke();
         gameOverPanel.SetActive(false);
     }
+
+    public void OnQuitButtonPressed()
+    {
+        Application.Quit();
+    }
 }

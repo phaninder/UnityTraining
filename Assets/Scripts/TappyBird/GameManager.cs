@@ -17,6 +17,8 @@ namespace TappyBird
         [SerializeField]
         private float speedIncrement = 0.5f;
 
+        private bool hasGameStarted = false;
+
         private void OnEnable()
         {
             GameEvents.GameOver += OnGameOver;
@@ -27,12 +29,6 @@ namespace TappyBird
         {
             GameEvents.GameOver -= OnGameOver;
             GameEvents.RestartGame -= OnRestart;
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            InvokeRepeating("IncreaseSpeed", 3f, 5f);
         }
 
         private void IncreaseSpeed()
@@ -57,6 +53,16 @@ namespace TappyBird
         {
             CancelInvoke("IncreaseSpeed");
             Time.timeScale = 0;
+        }
+
+        private void Update()
+        {
+            if(Input.GetMouseButtonDown(0) && !hasGameStarted)
+            {
+                hasGameStarted = true;
+                InvokeRepeating("IncreaseSpeed", 3f, 5f);
+                GameEvents.StartGame?.Invoke();
+            }
         }
     }
 }

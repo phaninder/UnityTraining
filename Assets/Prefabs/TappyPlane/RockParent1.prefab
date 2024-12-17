@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 4846018677108108733}
   - component: {fileID: 3475686009219520792}
   - component: {fileID: 7923682092384524519}
+  - component: {fileID: 3932222980045325763}
   m_Layer: 0
   m_Name: RockParent1
   m_TagString: Untagged
@@ -240,7 +241,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextObject: {fileID: 0}
   xPosDelta: 6
-  objectMovementRef: {fileID: 0}
+  objectMovementRef: {fileID: 3475686009219520792}
+--- !u!114 &3932222980045325763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8115460667166076025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc1827acf58a6f448bc5a04897c89a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objMovementRef: {fileID: 3475686009219520792}
 --- !u!1 &8406768341579191768
 GameObject:
   m_ObjectHideFlags: 0

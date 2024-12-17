@@ -9,4 +9,5 @@ public class GameEvents : MonoBehaviour
     public static Action<float> IncreaseSpeed;
     public static Action GameOver;
     public static Action RestartGame;
+    public static Action StartGame;
 }
