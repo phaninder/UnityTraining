@@ -27,34 +27,63 @@ public class PlayerAnimation : MonoBehaviour
     {
         if (animator != null)
         {
-            if (Input.GetKey(KeyCode.RightArrow))
+            //if (Input.GetKey(KeyCode.RightArrow))
+            //{
+            //    var newScale = new Vector3(1, 1, 1);
+            //    transform.localScale = newScale;
+            //    animator.SetBool("Run", true);
+            //}
+            //else if (Input.GetKeyUp(KeyCode.RightArrow))
+            //{
+            //    animator.SetBool("Run", false);
+            //}
+
+            //if(Input.GetKey(KeyCode.LeftArrow))
+            //{
+            //    var newScale = new Vector3(-1, 1, 1);
+            //    transform.localScale = newScale;
+            //    animator.SetBool("Run", true);
+            //}
+            //else if(Input.GetKeyUp(KeyCode.LeftArrow))
+            //{
+            //    animator.SetBool("Run", false);
+            //}
+
+
+            float move = Input.GetAxis("Horizontal"); //0 - 1
+            transform.Translate(Vector3.right * move * 5 * Time.deltaTime);
+            float animMoveValue = move;
+
+            if(animMoveValue == 0)
+            {
+                animMoveValue = -1;
+            }
+            else
+            {
+                animMoveValue = 1;
+            }
+
+            animator.SetFloat("Move", animMoveValue);
+
+            if(move > 0)
             {
                 var newScale = new Vector3(1, 1, 1);
                 transform.localScale = newScale;
-                animator.SetBool("Run", true);
             }
-            else if (Input.GetKeyUp(KeyCode.RightArrow))
-            {
-                animator.SetBool("Run", false);
-            }
-
-            if(Input.GetKey(KeyCode.LeftArrow))
+            else if(move < 0)
             {
                 var newScale = new Vector3(-1, 1, 1);
                 transform.localScale = newScale;
-                animator.SetBool("Run", true);
-            }
-            else if(Input.GetKeyUp(KeyCode.LeftArrow))
-            {
-                animator.SetBool("Run", false);
             }
 
-            if(Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
+            if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
             {
                 rigidbody.AddForce(Vector2.up * force);
                 animator.SetBool("Jump", true);
+                int randJump = Random.Range(0,2);
+                animator.SetInteger("JumpId", randJump);
             }
-        }
+        }        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -64,6 +93,7 @@ public class PlayerAnimation : MonoBehaviour
             if(collision.gameObject.CompareTag("Ground"))
             {
                 isGrounded = true;
+                //animator.SetTrigger("Jump");
                 animator.SetBool("Jump", false);
             }
         }
