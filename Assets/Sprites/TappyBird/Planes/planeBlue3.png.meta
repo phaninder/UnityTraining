@@ -140,7 +140,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      planeBlue3_0: 4299855330929215960
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

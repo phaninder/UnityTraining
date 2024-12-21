@@ -140,7 +140,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rockIce_0: 3420661549258684333
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

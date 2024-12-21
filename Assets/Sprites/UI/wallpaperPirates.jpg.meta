@@ -140,7 +140,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      wallpaperPirates_0: -943519435509863030
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

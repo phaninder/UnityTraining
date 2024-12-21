@@ -140,7 +140,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      wallpaperVoxel_0: 957894465656164866
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

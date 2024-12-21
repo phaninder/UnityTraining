@@ -14,12 +14,34 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField]
     private bool isGrounded = true;
 
+    [SerializeField]
+    private OnScreenButtons onScreenButtons;
+    [SerializeField]
+    private bool canTakeInput;
+
+    private void OnEnable()
+    {
+        onScreenButtons.JumpEvent += OnJumpButtonPressed;
+        onScreenButtons.Move += MovePlayer;
+    }
+
+    private void OnDisable()
+    {
+        onScreenButtons.JumpEvent -= OnJumpButtonPressed;
+        onScreenButtons.Move -= MovePlayer;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         isGrounded = true;
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    private void OnJumpButtonPressed()
+    {
+        Jump();
     }
 
     // Update is called once per frame
@@ -49,41 +71,56 @@ public class PlayerAnimation : MonoBehaviour
             //    animator.SetBool("Run", false);
             //}
 
-
-            float move = Input.GetAxis("Horizontal"); //0 - 1
-            transform.Translate(Vector3.right * move * 5 * Time.deltaTime);
-            float animMoveValue = move;
-
-            if(animMoveValue == 0)
+            if (canTakeInput)
             {
-                animMoveValue = -1;
-            }
-            else
-            {
-                animMoveValue = 1;
-            }
+                float move = Input.GetAxis("Horizontal"); //0 - 1
+                MovePlayer(move);
 
-            animator.SetFloat("Move", animMoveValue);
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    Jump();
+                }
+            }
+        }
+    }
 
-            if(move > 0)
-            {
-                var newScale = new Vector3(1, 1, 1);
-                transform.localScale = newScale;
-            }
-            else if(move < 0)
-            {
-                var newScale = new Vector3(-1, 1, 1);
-                transform.localScale = newScale;
-            }
+    private void MovePlayer(float move)
+    {
+        transform.Translate(Vector3.right * move * 5 * Time.deltaTime);
+        float animMoveValue = move;
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
-            {
-                rigidbody.AddForce(Vector2.up * force);
-                animator.SetBool("Jump", true);
-                int randJump = Random.Range(0,2);
-                animator.SetInteger("JumpId", randJump);
-            }
-        }        
+        if (animMoveValue == 0)
+        {
+            animMoveValue = -1;
+        }
+        else
+        {
+            animMoveValue = 1;
+        }
+
+        animator.SetFloat("Move", animMoveValue);
+
+        if (move > 0)
+        {
+            var newScale = new Vector3(1, 1, 1);
+            transform.localScale = newScale;
+        }
+        else if (move < 0)
+        {
+            var newScale = new Vector3(-1, 1, 1);
+            transform.localScale = newScale;
+        }
+    }
+
+    private void Jump()
+    {
+        if (isGrounded)
+        {
+            rigidbody.AddForce(Vector2.up * force);
+            animator.SetBool("Jump", true);
+            int randJump = Random.Range(0, 2);
+            animator.SetInteger("JumpId", randJump);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
