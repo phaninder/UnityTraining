@@ -14,19 +14,19 @@ public class OnScreenButtons : MonoBehaviour
 
     private void Update()
     {
-        //Move?.Invoke(onScreenJoystick.Horizontal);
-        if (moveRight)
-        {
-            Move?.Invoke(1);
-        }
-        else if (moveLeft)
-        {
-            Move?.Invoke(-1);
-        }
-        else
-        {
-            Move?.Invoke(0);
-        }
+        Move?.Invoke(onScreenJoystick.Horizontal);
+        //if (moveRight)
+        //{
+        //    Move?.Invoke(1);
+        //}
+        //else if (moveLeft)
+        //{
+        //    Move?.Invoke(-1);
+        //}
+        //else
+        //{
+        //    Move?.Invoke(0);
+        //}
     }
 
 

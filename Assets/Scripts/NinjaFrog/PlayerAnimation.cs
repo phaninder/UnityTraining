@@ -19,6 +19,13 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField]
     private bool canTakeInput;
 
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip[] jumpClips;
+    [SerializeField]
+    private AudioClip[] footStepClips;
+
     private void OnEnable()
     {
         onScreenButtons.JumpEvent += OnJumpButtonPressed;
@@ -37,6 +44,7 @@ public class PlayerAnimation : MonoBehaviour
         isGrounded = true;
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnJumpButtonPressed()
@@ -112,6 +120,17 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
+    private void PlayFootStepSound()
+    {
+        //To Play sound
+        int footStepIndex = Random.Range(0, footStepClips.Length);
+        audioSource.clip = footStepClips[footStepIndex];
+        audioSource.Play();
+        //Methods available in audiosource for pausing and stopping
+        //audioSource.Stop();
+        //audioSource.Pause();
+    }
+
     private void Jump()
     {
         if (isGrounded)
@@ -120,6 +139,11 @@ public class PlayerAnimation : MonoBehaviour
             animator.SetBool("Jump", true);
             int randJump = Random.Range(0, 2);
             animator.SetInteger("JumpId", randJump);
+            //To Play sound
+            int jumpIndex = Random.Range(0, jumpClips.Length);
+            audioSource.clip = jumpClips[jumpIndex];
+            audioSource.Play();
+            Debug.Log("Playing Jump sound");
         }
     }
 
